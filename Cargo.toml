@@ -5,3 +5,5 @@ version = "0.0.1"
 authors = ["Jesse Tuchsen <tuchsen@hush.ai>"]
 description = "A library that helps you color and style your text"
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/jtuchsen/colors.git"
