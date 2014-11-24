@@ -5,67 +5,38 @@ extern crate log;
 extern crate core;
 extern crate colors;
 
-use colors::styles::Styles;
-use colors::styles::StylePoint;
+use colors::Styles;
+use colors::StylePoint;
 use colors::style;
 use colors::Style;
 
-const STYLES: [Styles, ..26] = [
-    Styles::Reset,
-    Styles::Bold,
-    Styles::Dim,
-    Styles::Italic,
-    Styles::Underline,
-    Styles::Inverse,
-    Styles::Hidden,
-    Styles::Strikethrough,
-    Styles::Black,
-    Styles::Red,
-    Styles::Green,
-    Styles::Yellow,
-    Styles::Blue,
-    Styles::Magenta,
-    Styles::Cyan,
-    Styles::White,
-    Styles::Gray,
-    Styles::Grey,
-    Styles::BgBlack,
-    Styles::BgRed,
-    Styles::BgGreen,
-    Styles::BgYellow,
-    Styles::BgBlue,
-    Styles::BgMagenta,
-    Styles::BgCyan,
-    Styles::BgWhite
-];
-
-const STYLE_NAMES: [&'static str, ..26] = [
-    "Reset",
-    "Bold",
-    "Dim",
-    "Italic",
-    "Underline",
-    "Inverse",
-    "Hidden",
-    "Strikethrough",
-    "Black",
-    "Red",
-    "Green",
-    "Yellow",
-    "Blue",
-    "Magenta",
-    "Cyan",
-    "White",
-    "Gray",
-    "Grey",
-    "BgBlack",
-    "BgRed", 
-    "BgGreen",
-    "BgYellow",
-    "BgBlue",
-    "BgMagenta",
-    "BgCyan",
-    "BgWhite"
+const STYLES: [(Styles, &'static str), ..26] = [
+    (Styles::Reset, "Reset"),
+    (Styles::Bold, "Bold"),
+    (Styles::Dim, "Dim"),
+    (Styles::Italic, "Italic"),
+    (Styles::Underline, "Underline"),
+    (Styles::Inverse, "Inverse"),
+    (Styles::Hidden, "Hidden"),
+    (Styles::Strikethrough, "Strikethrough"),
+    (Styles::Black, "Black"),
+    (Styles::Red, "Red"),
+    (Styles::Green, "Green"),
+    (Styles::Yellow, "Yellow"),
+    (Styles::Blue, "Blue"),
+    (Styles::Magenta, "Magenta"),
+    (Styles::Cyan, "Cyan"),
+    (Styles::White, "White"),
+    (Styles::Gray, "Gray"),
+    (Styles::Grey, "Grey"),
+    (Styles::BgBlack, "BgBlack"),
+    (Styles::BgRed, "BgRed"),
+    (Styles::BgGreen, "BgGreen"),
+    (Styles::BgYellow, "BgYellow"),
+    (Styles::BgBlue, "BgBlue"),
+    (Styles::BgMagenta, "BgMagenta"),
+    (Styles::BgCyan, "BgCyan"),
+    (Styles::BgWhite, "BgWhite")
 ];
 
 // TODO: Make a test specific logging mechanism that prints "greetings", it
@@ -74,10 +45,10 @@ const STYLE_NAMES: [&'static str, ..26] = [
 
 #[test]
 fn it_styles_strings_using_direct_calling() {
-    for zip in STYLES.iter().zip(STYLE_NAMES.iter()) {
-        let (style_type, style_name): (&Styles, &&str) = zip;
-        let style_point = StylePoint::new(*style_type);
-        let styled = style(*style_type, "greetings");
+    for zip in STYLES.iter() {
+        let (style_type, style_name): (Styles, &str) = *zip;
+        let style_point = StylePoint::new(style_type);
+        let styled = style(style_type, "greetings");
 
         debug!("{} should be style type {}", styled, style_name);
 
@@ -93,10 +64,10 @@ fn it_styles_strings_using_direct_calling() {
 
 #[test]
 fn it_styles_strings_using_static_strings() {
-    for zip in STYLES.iter().zip(STYLE_NAMES.iter()) {
-        let (style_type, style_name): (&Styles, &&str) = zip;
-        let style_point = StylePoint::new(*style_type);
-        let styled = "greetings".style(*style_type);
+    for zip in STYLES.iter() {
+        let (style_type, style_name): (Styles, &str) = *zip;
+        let style_point = StylePoint::new(style_type);
+        let styled = "greetings".style(style_type);
 
         debug!("{} should be style type {}", styled, style_name);
 
@@ -126,10 +97,10 @@ fn it_styles_strings_using_static_strings() {
 
 #[test]
 fn it_styles_strings_using_string_instances() {
-    for zip in STYLES.iter().zip(STYLE_NAMES.iter()) {
-        let (style_type, style_name): (&Styles, &&str) = zip;
-        let style_point = StylePoint::new(*style_type);
-        let styled = (String::new() + "greetings").style(*style_type);
+    for zip in STYLES.iter() {
+        let (style_type, style_name): (Styles, &str) = *zip;
+        let style_point = StylePoint::new(style_type);
+        let styled = (String::new() + "greetings").style(style_type);
 
         debug!("{} should be style type {}", styled, style_name);
 

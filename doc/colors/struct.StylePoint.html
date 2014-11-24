@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `style` fn in crate `colors`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, style">
+    <meta name="description" content="API documentation for the Rust `StylePoint` struct in crate `colors`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, StylePoint">
 
-    <title>colors::style - Rust</title>
+    <title>colors::StylePoint - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='index.html'>colors</a></p><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.StylePoint.html'>StylePoint</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Styles.html'>Styles</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.Style.html'>Style</a></div><div class='block fn'><h2>Functions</h2><a class='fn current' href='fn.style.html'>style</a><a class='fn ' href='fn.style_maybe.html'>style_maybe</a></div>
+        <p class='location'><a href='index.html'>colors</a></p><div class='block struct'><h2>Structs</h2><a class='struct current' href='struct.StylePoint.html'>StylePoint</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Styles.html'>Styles</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.Style.html'>Style</a></div><div class='block fn'><h2>Functions</h2><a class='fn ' href='fn.style.html'>style</a><a class='fn ' href='fn.style_maybe.html'>style_maybe</a></div>
     </section>
 
     <nav class="sub">
@@ -40,12 +40,17 @@
         </form>
     </nav>
 
-    <section id='main' class="content fn">
-<h1 class='fqn'><span class='in-band'>Function <a href='index.html'>colors</a>::<wbr><a class='fn' href=''>style</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>colors</a>::<wbr><a class='struct' href=''>StylePoint</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]
             </a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3700' href='../src/colors/src/lib.rs.html#69-73'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn style(style: <a class='enum' href='../colors/enum.Styles.html' title='colors::Styles'>Styles</a>, original: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></pre></section>
+        </span><a id='src-40' href='../src/colors/src/styles.rs.html#30-33'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct StylePoint {
+    // some fields omitted
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../colors/struct.StylePoint.html' title='colors::StylePoint'>StylePoint</a></code></h3><div class='impl-methods'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(style: <a class='enum' href='../colors/enum.Styles.html' title='colors::Styles'>Styles</a>) -&gt; <a class='struct' href='../colors/struct.StylePoint.html' title='colors::StylePoint'>StylePoint</a></code></h4>
+<h4 id='method.get_prefix' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_prefix' class='fnname'>get_prefix</a>(&amp;self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></h4>
+<h4 id='method.get_suffix' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_suffix' class='fnname'>get_suffix</a>(&amp;self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></h4>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
