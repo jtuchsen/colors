@@ -1,6 +1,3 @@
-#![crate_id = "colors"]
-#![crate_type="lib"]
-
 //! Colors
 //! ======
 //!
@@ -75,6 +72,6 @@ pub fn style_maybe(style: Styles, original: &str, should_style: bool) -> String 
 
     let points = StylePoint::new(style);
     
-    points.get_prefix() + original + points.get_suffix()
+    points.get_prefix() + original + points.get_suffix().as_slice()
 }
 

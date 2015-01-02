@@ -1,3 +1,4 @@
+#[deriving(Copy)]
 pub enum Styles {
     Reset,
     Bold,
@@ -27,6 +28,7 @@ pub enum Styles {
     BgWhite
 }
 
+#[deriving(Copy)]
 pub struct StylePoint {
     prefix: int,
     suffix: int
@@ -65,10 +67,10 @@ impl StylePoint {
     }
 
     pub fn get_prefix(&self) -> String {
-        String::new() + "\u001b[" + self.prefix.to_string().as_slice() + "m"
+        String::new() + "\u{001b}[" + self.prefix.to_string().as_slice() + "m"
     }
 
     pub fn get_suffix(&self) -> String {
-        String::new() + "\u001b[" + self.suffix.to_string().as_slice() + "m"
+        String::new() + "\u{001b}[" + self.suffix.to_string().as_slice() + "m"
     }
 }
