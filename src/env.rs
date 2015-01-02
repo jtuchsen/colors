@@ -36,7 +36,7 @@ fn supports_colors_pure(args: Vec<&str>, is_tty: bool, is_color_term: bool, term
     if !is_tty {
         return false
     }
-    
+
     if is_color_term {
         return true
     }
