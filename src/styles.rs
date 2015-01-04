@@ -1,4 +1,4 @@
-#[deriving(Copy)]
+#[derive(Copy)]
 pub enum Styles {
     Reset,
     Bold,
@@ -28,7 +28,7 @@ pub enum Styles {
     BgWhite
 }
 
-#[deriving(Copy)]
+#[derive(Copy)]
 pub struct StylePoint {
     prefix: int,
     suffix: int
