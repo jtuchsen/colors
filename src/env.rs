@@ -1,8 +1,8 @@
 use std::os;
 use libc;
 
-const COLORS_OFF : [&'static str, ..2] = ["--no-color", "--color=false"];
-const COLORS_ON  : [&'static str, ..3] = ["--color", "--color=always", "--color=true"];
+const COLORS_OFF : [&'static str; 2] = ["--no-color", "--color=false"];
+const COLORS_ON  : [&'static str; 3] = ["--color", "--color=always", "--color=true"];
 
 pub fn supports_colors() -> bool {
     supports_colors_from_env()
