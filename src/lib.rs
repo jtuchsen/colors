@@ -1,6 +1,3 @@
-#![crate_id = "colors"]
-#![crate_type="lib"]
-
 //! Colors
 //! ======
 //!
@@ -9,7 +6,7 @@
 //!
 //! Examples
 //! --------
-//!     
+//!
 //!     use colors::Style; // Import this to add colors to your string types
 //!
 //!     println!("{}", "I'm now magically printed in green!".green());
@@ -20,12 +17,12 @@
 //!     use colors::{Styles,style};
 //!
 //!     println!("{}", style(Styles::Blue, "I'm now blue!"))
-//! 
+//!
 //!   Although with the former style you get a nifty chaining syntax:
 //!
 //!     use colors::Style;
 //!     println!("{}", "Bolded, underlined, and red!".bold().underline().red());
-//!   
+//!
 //! Issues
 //! ------
 //!
@@ -41,7 +38,7 @@
 //!
 //! Missing from Port / Todo
 //! ------------------------
-//! 
+//!
 //! - Extra (silly) styles
 //! - Color themes
 //! - String substitution, for reasons given above
@@ -74,7 +71,7 @@ pub fn style_maybe(style: Styles, original: &str, should_style: bool) -> String 
     if !should_style { return String::new() }
 
     let points = StylePoint::new(style);
-    
-    points.get_prefix() + original + points.get_suffix()
+
+    points.get_prefix() + original + points.get_suffix().as_slice()
 }
 
