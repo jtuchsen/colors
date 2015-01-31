@@ -1,5 +1,6 @@
 use std::os;
 use libc;
+use regex::Regex;
 
 const COLORS_OFF : [&'static str; 2] = ["--no-color", "--color=false"];
 const COLORS_ON  : [&'static str; 3] = ["--color", "--color=always", "--color=true"];
@@ -45,7 +46,7 @@ fn supports_colors_pure(args: Vec<&str>, is_tty: bool, is_color_term: bool, term
         return false
     }
 
-    return regex!(r"/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i").is_match(term.as_slice())
+    return Regex::new(r"/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i").unwrap().is_match(term.as_slice())
 }
 
 #[test]
