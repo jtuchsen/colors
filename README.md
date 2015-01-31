@@ -34,7 +34,7 @@ Issues
 
 - This whole technique is also pretty un-rusty. Dynamically allocating a bunch Strings in order
   to wrap them in fancy Unicode characters isn't going to be very efficient. As an alternative
-  you can use the nifty [TerminfoTerminal][] from Rusts standard library.
+  you can use the nifty [term][] crate.
 
 Missing from Port / Todo
 ------------------------
@@ -45,4 +45,4 @@ Missing from Port / Todo
 
 [NPM colors]: https://www.npmjs.org/package/colors
 [format]: http://doc.rust-lang.org/std/fmt/index.html#usage
-[TerminfoTerminal]: http://doc.rust-lang.org/term/terminfo/struct.TerminfoTerminal.html
+[term]: http://doc.rust-lang.org/term/term/index.html
