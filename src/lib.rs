@@ -47,11 +47,8 @@
 //! [format]: http://doc.rust-lang.org/std/fmt/index.html#usage
 //! [TerminfoTerminal]: http://doc.rust-lang.org/term/terminfo/struct.TerminfoTerminal.html
 
-#![feature(phase)]
-#[phase(plugin)]
-extern crate regex_macros;
-extern crate regex;
 extern crate libc;
+extern crate regex;
 
 pub use styles::StylePoint;
 pub use styles::Styles;
