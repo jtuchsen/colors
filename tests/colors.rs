@@ -1,6 +1,6 @@
-#![feature(phase)]
+#![feature(rustc_private, core)]
 
-#[phase(plugin, link)]
+#[macro_use]
 extern crate log;
 extern crate core;
 extern crate colors;
@@ -10,7 +10,7 @@ use colors::StylePoint;
 use colors::style;
 use colors::Style;
 
-const STYLES: [(Styles, &'static str), ..26] = [
+const STYLES: [(Styles, &'static str); 26] = [
     (Styles::Reset, "Reset"),
     (Styles::Bold, "Bold"),
     (Styles::Dim, "Dim"),
@@ -52,12 +52,12 @@ fn it_styles_strings_using_direct_calling() {
 
         debug!("{} should be style type {}", styled, style_name);
 
-        assert!(styled.starts_with(style_point.get_prefix().as_slice()),
+        assert!(styled.starts_with(&*style_point.get_prefix()),
             "Coloring prefix failed for {}", styled);
 
-        assert!(styled.as_slice().contains("greetings"));
+        assert!(styled.contains("greetings"));
 
-        assert!(styled.ends_with(style_point.get_suffix().as_slice()),
+        assert!(styled.ends_with(&*style_point.get_suffix()),
             "Coloring suffix failed for {}", styled);
     }
 }
@@ -71,11 +71,11 @@ fn it_styles_strings_using_static_strings() {
 
         debug!("{} should be style type {}", styled, style_name);
 
-        assert!(styled.starts_with(style_point.get_prefix().as_slice()),
+        assert!(styled.starts_with(&*style_point.get_prefix()),
             "Styling prefix failed for color {} with {}", style_name, styled);
-        assert!(styled.as_slice().contains("greetings"),
+        assert!(styled.contains("greetings"),
             "Styling dropped the text for {}", style_name);
-        assert!(styled.ends_with(style_point.get_suffix().as_slice()),
+        assert!(styled.ends_with(&*style_point.get_suffix()),
             "Styling suffix failed for color {} with {}", style_name, styled);
     }
 
@@ -87,11 +87,11 @@ fn it_styles_strings_using_static_strings() {
     let styled = "greetings".red();
     let style_point = StylePoint::new(Styles::Red);
 
-    assert!(styled.starts_with(style_point.get_prefix().as_slice()),
+    assert!(styled.starts_with(&*style_point.get_prefix()),
         "Styling prefix failed for color {} with {}", "Red", styled);
-    assert!(styled.as_slice().contains("greetings"),
+    assert!(styled.contains("greetings"),
         "Styling dropped the text for {}", "Red");
-    assert!(styled.ends_with(style_point.get_suffix().as_slice()),
+    assert!(styled.ends_with(&*style_point.get_suffix()),
         "Styling suffix failed for color {} with {}", "Red", styled);
 }
 
@@ -104,21 +104,21 @@ fn it_styles_strings_using_string_instances() {
 
         debug!("{} should be style type {}", styled, style_name);
 
-        assert!(styled.starts_with(style_point.get_prefix().as_slice()),
+        assert!(styled.starts_with(&*style_point.get_prefix()),
             "Styling prefix failed for color {} with {}", style_name, styled);
-        assert!(styled.as_slice().contains("greetings"),
+        assert!(styled.contains("greetings"),
             "Styling dropped the text for {}", style_name);
-        assert!(styled.ends_with(style_point.get_suffix().as_slice()),
+        assert!(styled.ends_with(&*style_point.get_suffix()),
             "Styling suffix failed for color {} with {}", style_name, styled);
     }
 
     let styled = (String::new() + "greetings").red();
     let style_point = StylePoint::new(Styles::Red);
 
-    assert!(styled.starts_with(style_point.get_prefix().as_slice()),
+    assert!(styled.starts_with(&*style_point.get_prefix()),
         "Styling prefix failed for color {} with {}", "Red", styled);
-    assert!(styled.as_slice().contains("greetings"),
+    assert!(styled.contains("greetings"),
         "Styling dropped the text for {}", "Red");
-    assert!(styled.ends_with(style_point.get_suffix().as_slice()),
+    assert!(styled.ends_with(&*style_point.get_suffix()),
         "Styling suffix failed for color {} with {}", "Red", styled);
 }

@@ -1,6 +1,6 @@
-use std::os;
 use libc;
 use regex::Regex;
+use std::env;
 
 const COLORS_OFF : [&'static str; 2] = ["--no-color", "--color=false"];
 const COLORS_ON  : [&'static str; 3] = ["--color", "--color=always", "--color=true"];
@@ -10,27 +10,27 @@ pub fn supports_colors() -> bool {
 }
 
 fn supports_colors_from_env() -> bool {
-    let os_args = os::args();
+    let os_args = env::args();
     let colors: Vec<&str> = COLORS_OFF.iter().chain(COLORS_ON.iter()).map(|&str| str).collect();
     let args: Vec<&str> = os_args
-        .iter()
-        .filter_map(|arg| colors.iter().find(|&&c| arg.as_slice() == c).map(|&c| c))
+        .filter_map(|arg| colors.iter().find(|&&c| arg == c))
+        .map(|&s| s)
         .collect();
 
     // TODO: Figure out just how cross platform this is, the answer is probably not very
     let is_tty = unsafe { libc::isatty(libc::STDIN_FILENO as i32) } != 0;
-    let is_color_term = os::getenv("COLOR_TERM").is_some();
-    let term = os::getenv("TERM").unwrap_or(String::new());
+    let is_color_term = env::var("COLOR_TERM").is_ok();
+    let term = env::var("TERM").unwrap_or_else(|_| String::new());
 
     supports_colors_pure(args, is_tty, is_color_term, term)
 }
 
 fn supports_colors_pure(args: Vec<&str>, is_tty: bool, is_color_term: bool, term: String) -> bool {
-    if args.iter().any(|arg| { COLORS_OFF.iter().any(|&neg| { neg == arg.as_slice() }) }) {
+    if args.iter().any(|arg| { COLORS_OFF.iter().any(|neg| { neg == arg }) }) {
         return false
     }
 
-    if args.iter().any(|arg| { COLORS_ON.iter().any(|&pos| { pos == arg.as_slice() }) }) {
+    if args.iter().any(|arg| { COLORS_ON.iter().any(|pos| { pos == arg }) }) {
         return true
     }
 
@@ -42,11 +42,11 @@ fn supports_colors_pure(args: Vec<&str>, is_tty: bool, is_color_term: bool, term
         return true
     }
 
-    if term.as_slice() == "dumb" {
+    if term == "dumb" {
         return false
     }
 
-    return Regex::new(r"/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i").unwrap().is_match(term.as_slice())
+    return Regex::new(r"/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i").unwrap().is_match(&*term)
 }
 
 #[test]
