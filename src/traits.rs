@@ -1,91 +1,36 @@
-use super::{Styles,style};
+use super::{Styles, style};
+use std::ops::Deref;
 
 pub trait Style {
-    fn style(self, style: Styles) -> String;
-    fn reset(self) -> String;
-    fn bold(self) -> String;
-    fn dim(self) -> String;
-    fn italic(self) -> String;
-    fn underline(self) -> String;
-    fn inverse(self) -> String;
-    fn hidden(self) -> String;
-    fn strikethrough(self) -> String;
-    fn black(self) -> String;
-    fn red(self) -> String;
-    fn green(self) -> String;
-    fn yellow(self) -> String;
-    fn blue(self) -> String;
-    fn magenta(self) -> String;
-    fn cyan(self) -> String;
-    fn white(self) -> String;
-    fn gray(self) -> String;
-    fn grey(self) -> String;
-    fn bg_black(self) -> String;
-    fn bg_red(self) -> String;
-    fn bg_green(self) -> String;
-    fn bg_yellow(self) -> String;
-    fn bg_blue(self) -> String;
-    fn bg_magenta(self) -> String;
-    fn bg_cyan(self) -> String;
-    fn bg_white(self) -> String;
+    fn style(&self, style: Styles) -> String;
+    fn reset(&self) -> String { self.style(Styles::Reset) }
+    fn bold(&self) -> String { self.style(Styles::Bold) }
+    fn dim(&self) -> String { self.style(Styles::Dim) }
+    fn italic(&self) -> String { self.style(Styles::Italic) }
+    fn underline(&self) -> String { self.style(Styles::Underline) }
+    fn inverse(&self) -> String { self.style(Styles::Inverse) }
+    fn hidden(&self) -> String { self.style(Styles::Hidden) }
+    fn strikethrough(&self) -> String { self.style(Styles::Strikethrough) }
+    fn black(&self) -> String { self.style(Styles::Black) }
+    fn red(&self) -> String { self.style(Styles::Red) }
+    fn green(&self) -> String { self.style(Styles::Green) }
+    fn yellow(&self) -> String { self.style(Styles::Yellow) }
+    fn blue(&self) -> String { self.style(Styles::Blue) }
+    fn magenta(&self) -> String { self.style(Styles::Magenta) }
+    fn cyan(&self) -> String { self.style(Styles::Cyan) }
+    fn white(&self) -> String { self.style(Styles::White) }
+    fn gray(&self) -> String { self.style(Styles::Gray) }
+    fn grey(&self) -> String { self.style(Styles::Grey) }
+    fn bg_black(&self) -> String { self.style(Styles::BgBlack) }
+    fn bg_red(&self) -> String { self.style(Styles::BgRed) }
+    fn bg_green(&self) -> String { self.style(Styles::BgGreen) }
+    fn bg_yellow(&self) -> String { self.style(Styles::BgYellow) }
+    fn bg_blue(&self) -> String { self.style(Styles::BgBlue) }
+    fn bg_magenta(&self) -> String { self.style(Styles::BgMagenta) }
+    fn bg_cyan(&self) -> String { self.style(Styles::BgCyan) }
+    fn bg_white(&self) -> String { self.style(Styles::BgWhite) }
 }
 
-impl Style for &'static str {
-    fn style(self, choice: Styles) -> String { style(choice, self) }
-    fn reset(self) -> String { style(Styles::Reset, self) }
-    fn bold(self) -> String { style(Styles::Bold, self) }
-    fn dim(self) -> String { style(Styles::Dim, self) }
-    fn italic(self) -> String { style(Styles::Italic, self) }
-    fn underline(self) -> String { style(Styles::Underline, self) }
-    fn inverse(self) -> String { style(Styles::Inverse, self) }
-    fn hidden(self) -> String { style(Styles::Hidden, self) }
-    fn strikethrough(self) -> String { style(Styles::Strikethrough, self) }
-    fn black(self) -> String { style(Styles::Black, self) }
-    fn red(self) -> String { style(Styles::Red, self) }
-    fn green(self) -> String { style(Styles::Green, self) }
-    fn yellow(self) -> String { style(Styles::Yellow, self) }
-    fn blue(self) -> String { style(Styles::Blue, self) }
-    fn magenta(self) -> String { style(Styles::Magenta, self) }
-    fn cyan(self) -> String { style(Styles::Cyan, self) }
-    fn white(self) -> String { style(Styles::White, self) }
-    fn gray(self) -> String { style(Styles::Gray, self) }
-    fn grey(self) -> String { style(Styles::Grey, self) }
-    fn bg_black(self) -> String { style(Styles::BgBlack, self) }
-    fn bg_red(self) -> String { style(Styles::BgRed, self) }
-    fn bg_green(self) -> String { style(Styles::BgGreen, self) }
-    fn bg_yellow(self) -> String { style(Styles::BgYellow, self) }
-    fn bg_blue(self) -> String { style(Styles::BgBlue, self) }
-    fn bg_magenta(self) -> String { style(Styles::BgMagenta, self) }
-    fn bg_cyan(self) -> String { style(Styles::BgCyan, self) }
-    fn bg_white(self) -> String { style(Styles::BgWhite, self) }
-}
-
-impl Style for String {
-    fn style(self, choice: Styles) -> String { style(choice, &*self) }
-    fn reset(self) -> String { style(Styles::Reset, &*self) }
-    fn bold(self) -> String { style(Styles::Bold, &*self) }
-    fn dim(self) -> String { style(Styles::Dim, &*self) }
-    fn italic(self) -> String { style(Styles::Italic, &*self) }
-    fn underline(self) -> String { style(Styles::Underline, &*self) }
-    fn inverse(self) -> String { style(Styles::Inverse, &*self) }
-    fn hidden(self) -> String { style(Styles::Hidden, &*self) }
-    fn strikethrough(self) -> String { style(Styles::Strikethrough, &*self) }
-    fn black(self) -> String { style(Styles::Black, &*self) }
-    fn red(self) -> String { style(Styles::Red, &*self) }
-    fn green(self) -> String { style(Styles::Green, &*self) }
-    fn yellow(self) -> String { style(Styles::Yellow, &*self) }
-    fn blue(self) -> String { style(Styles::Blue, &*self) }
-    fn magenta(self) -> String { style(Styles::Magenta, &*self) }
-    fn cyan(self) -> String { style(Styles::Cyan, &*self) }
-    fn white(self) -> String { style(Styles::White, &*self) }
-    fn gray(self) -> String { style(Styles::Gray, &*self) }
-    fn grey(self) -> String { style(Styles::Grey, &*self) }
-    fn bg_black(self) -> String { style(Styles::BgBlack, &*self) }
-    fn bg_red(self) -> String { style(Styles::BgRed, &*self) }
-    fn bg_green(self) -> String { style(Styles::BgGreen, &*self) }
-    fn bg_yellow(self) -> String { style(Styles::BgYellow, &*self) }
-    fn bg_blue(self) -> String { style(Styles::BgBlue, &*self) }
-    fn bg_magenta(self) -> String { style(Styles::BgMagenta, &*self) }
-    fn bg_cyan(self) -> String { style(Styles::BgCyan, &*self) }
-    fn bg_white(self) -> String { style(Styles::BgWhite, &*self) }
+impl<T> Style for T where T: Deref<Target=str> {
+    fn style(&self, choice: Styles) -> String { style(choice, self.deref()) }
 }
