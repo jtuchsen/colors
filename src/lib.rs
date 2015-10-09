@@ -47,6 +47,7 @@
 //! [format]: http://doc.rust-lang.org/std/fmt/index.html#usage
 //! [TerminfoTerminal]: http://doc.rust-lang.org/term/terminfo/struct.TerminfoTerminal.html
 
+#![feature(libc)]
 extern crate libc;
 extern crate regex;
 
@@ -69,6 +70,6 @@ pub fn style_maybe(style: Styles, original: &str, should_style: bool) -> String 
 
     let points = StylePoint::new(style);
 
-    points.get_prefix() + original + points.get_suffix().as_slice()
+    points.get_prefix() + original + &*points.get_suffix()
 }
 
