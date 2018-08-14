@@ -6,23 +6,27 @@ Colors
 
 Examples
 --------
-    
-    use colors::Style; // Import this to add colors to your string types
 
-    println!("{}", "I'm now magically printed in green!".green());
+```rust
+use colors::Style; // Import this to add colors to your string types
+println!("{}", "I'm now magically printed in green!".green());
+```
 
   If you prefer to not have the traits added to your &str and strings then just call style
   directly, like so:
 
-    use colors::{Styles,style};
-
-    println!("{}", style(Styles::Blue, "I'm now blue!"))
+```rust
+use colors::{Styles, style};
+println!("{}", style(Styles::Blue, "I'm now blue!"))
+```
 
   Although with the former style you get a nifty chaining syntax:
 
-    use colors::Style;
-    println!("{}", "Bolded, underlined, and red!".bold().underline().red());
-  
+```rust
+use colors::Style;
+println!("{}", "Bolded, underlined, and red!".bold().underline().red());
+```
+
 Issues
 ------
 
